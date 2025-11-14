@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.isaquematos.course.entities.User;
 
-@RestController
-@RequestMapping(value = "/users")
+@RestController //Cria controladores, indica que a classe contém métodos que vão responder com dados diretamente (JSON ou XML)
+@RequestMapping(value = "/users") // anotação usada para mapear requisições HTTP para métodos específicos
 public class UserResource {
 
-	@GetMapping
+	@GetMapping //indica que o método vai tratar requisições GET, ou seja, obter dados de um servidor
 	public ResponseEntity<User> findAll(){
 		User u = new User(1L, "Maria", "maria@gmail.com", "9999999", "12345");
 		return ResponseEntity.ok().body(u);
