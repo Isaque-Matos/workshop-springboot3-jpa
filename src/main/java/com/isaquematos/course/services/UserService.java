@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.isaquematos.course.entities.User;
 import com.isaquematos.course.repositories.UserRepository;
+import com.isaquematos.course.services.exceptions.ResourceNotFoundException;
 
-@Service
+@Service //package de serviços, cuida das regras de negócio/lógica
 public class UserService {
 	
 	@Autowired
@@ -21,7 +22,7 @@ public class UserService {
 	
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.get(); //retorna o objeto do tipo user que estiver no Optional 
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));  
 	}
 	
 	public User insert(User obj) {
